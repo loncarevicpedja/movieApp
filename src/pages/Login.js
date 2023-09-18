@@ -29,10 +29,13 @@ const Login = () => {
     setError(null)
     Validate();
     try {
-      var res = await axios.post("https://localhost:7210/Identity/login", {
-        username,
-        password: pass,
-      });
+      var res = await axios.post(
+        "http://cosovicanica-001-site1.btempurl.com/Identity/login",
+        {
+          username,
+          password: pass,
+        }
+      );
 
       console.log(res.data);
       loginUser(res.data);

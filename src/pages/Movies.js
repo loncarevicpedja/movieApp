@@ -31,7 +31,7 @@ const Movies = () => {
       if (filter.ratingsAsc) query += `RatingsAsc=${filter.ratingsAsc}&`;
 
       const response = await axios.get(
-        "https://localhost:7210/movies/list?" + query
+        "http://cosovicanica-001-site1.btempurl.com/movies/list?" + query
       );
 
       setResult(response.data);
@@ -41,7 +41,9 @@ const Movies = () => {
   };
 
   const fetchCats = async () =>{
-    const response = await axios.get('https://localhost:7210/Categories')
+    const response = await axios.get(
+      "http://cosovicanica-001-site1.btempurl.com/Categories"
+    );
     setCats(response.data)
   }
 
@@ -81,15 +83,16 @@ const Movies = () => {
         <label>
           Category:
           <select value={filter.category || ""} onChange={handleCategoryChange}>
-          <option value={0}>All</option>
-            {cats && cats.map(n => <option value={n.id}>{n.caption}</option>)}
+            <option value={0}>All</option>
+            {cats && cats.map((n) => <option value={n.id}>{n.caption}</option>)}
             {/* Add other categories */}
           </select>
         </label>
         <br />
         <label>
           Ratings Ascending:
-          <input className="cekk"
+          <input
+            className="cekk"
             type="checkbox"
             checked={filter.ratingsAsc || false}
             onChange={handleRatingsAscChange}
@@ -99,12 +102,22 @@ const Movies = () => {
 
       {/* Display result */}
       <div className="px-5 gap-1 w-75 d-flex justify-content-start align-items-start flex-wrap">
-      {result &&
+        {result &&
           result.items &&
           result.items.map((movie) => (
-            <div onClick={() => navHandler(movie.id)} className="w-32 p-3 bg-light cursor-pointer text-dark" key={movie.id}>
-              <img className="img-fluid" src={`https://localhost:7210/Images/${movie.cover}`} height={'150px'}/>
-              <h3>{movie.name} <span className="text-muted">({movie.year})</span></h3>
+            <div
+              onClick={() => navHandler(movie.id)}
+              className="w-32 p-3 bg-light cursor-pointer text-dark"
+              key={movie.id}
+            >
+              <img
+                className="img-fluid"
+                src={`http://cosovicanica-001-site1.btempurl.com/Images/${movie.cover}`}
+                height={"150px"}
+              />
+              <h3>
+                {movie.name} <span className="text-muted">({movie.year})</span>
+              </h3>
               <h4>Ocena: {movie.avgRating}</h4>
               {/* Display other movie details */}
             </div>

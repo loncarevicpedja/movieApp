@@ -6,14 +6,18 @@ const AdminCategories = () => {
   const [render, setRerender] = useState(false);
 
   const fetchCats = async () => {
-    const response = await axios.get("https://localhost:7210/Categories");
+    const response = await axios.get(
+      "http://cosovicanica-001-site1.btempurl.com/Categories"
+    );
     setCats(response.data);
   };
 
   const removeHandler = async (id) => {
-    if(window.confirm("Da li ste sigurni?")){
-        await axios.delete("https://localhost:7210/Categories/" + id);
-        setRerender(true);
+    if (window.confirm("Da li ste sigurni?")) {
+      await axios.delete(
+        "http://cosovicanica-001-site1.btempurl.com/Categories/" + id
+      );
+      setRerender(true);
     }
   };
 
@@ -33,7 +37,9 @@ const AdminCategories = () => {
             <tr>
               <td>{n.caption}</td>
               <td>
-                <button className="dugme" onClick={() => removeHandler(n.id)}>Obrisi</button>
+                <button className="dugme" onClick={() => removeHandler(n.id)}>
+                  Obrisi
+                </button>
               </td>
             </tr>
           ))}

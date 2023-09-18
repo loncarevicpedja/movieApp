@@ -16,12 +16,16 @@ const AddMovie = () => {
   const [thumb, setThumb] = useState(null);
 
   const fetchCats = async () => {
-    const response = await axios.get("https://localhost:7210/Categories");
+    const response = await axios.get(
+      "http://cosovicanica-001-site1.btempurl.com/Categories"
+    );
     setCats(response.data);
   };
 
   const fetchdirs = async () => {
-    const response = await axios.get("https://localhost:7210/MovieDirectors");
+    const response = await axios.get(
+      "http://cosovicanica-001-site1.btempurl.com/MovieDirectors"
+    );
     setDirs(response.data);
   };
 
@@ -53,9 +57,11 @@ const AddMovie = () => {
 
       // console.log(body);
 
-      await axios.post("https://localhost:7210/Movies", formData).then((n) => {
-        navigate("/movies/" + n.data.id);
-      });
+      await axios
+        .post("http://cosovicanica-001-site1.btempurl.com/Movies", formData)
+        .then((n) => {
+          navigate("/movies/" + n.data.id);
+        });
     }
   };
 

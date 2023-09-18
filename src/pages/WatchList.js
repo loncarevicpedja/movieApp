@@ -7,12 +7,12 @@ const WatchList = () => {
   const { user } = useContext(IdentityContext);
   const [res, setRes] = useState(null);
   const [render, setRender] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const getRes = async () => {
     try {
       var response = await axios.get(
-        "https://localhost:7210/watchlist/" + user.id
+        "http://cosovicanica-001-site1.btempurl.com/watchlist/" + user.id
       );
 
       setRes(response.data);
@@ -23,12 +23,15 @@ const WatchList = () => {
 
   const removeWatchlist = async (id) => {
     try {
-      await axios.delete("https://localhost:7210/watchlist", {
-        data: {
-          userId: user.id,
-          movieId: id,
-        },
-      });
+      await axios.delete(
+        "http://cosovicanica-001-site1.btempurl.com/watchlist",
+        {
+          data: {
+            userId: user.id,
+            movieId: id,
+          },
+        }
+      );
 
       setRender(true);
       alert("removed!");
@@ -52,7 +55,8 @@ const WatchList = () => {
               className="ms-3 btn btn-warning"
             >
               watch now
-            </button><button
+            </button>
+            <button
               onClick={() => removeWatchlist(n.id)}
               className="ms-3 btn btn-danger"
             >

@@ -17,10 +17,13 @@ const MovieDetails = () => {
   const watchHandler = async () => {
     try {
       console.log(user);
-      await axios.post("https://localhost:7210/Movies/watch", {
-        userId: user.id,
-        movieId: id,
-      });
+      await axios.post(
+        "http://cosovicanica-001-site1.btempurl.com/Movies/watch",
+        {
+          userId: user.id,
+          movieId: id,
+        }
+      );
 
       setRerender(true);
     } catch (err) {
@@ -31,7 +34,9 @@ const MovieDetails = () => {
   useEffect(() => {
     const fetchMovie = async (id) => {
       try {
-        const res = await axios.get("https://localhost:7210/Movies/" + id);
+        const res = await axios.get(
+          "http://cosovicanica-001-site1.btempurl.com/Movies/" + id
+        );
         setMovie(res.data);
         console.log(res.data);
         setLoading(false);
@@ -48,10 +53,13 @@ const MovieDetails = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://localhost:7210/Ratings/" + id, {
-        rating: rate,
-        raterId: user.id,
-      });
+      const res = await axios.post(
+        "http://cosovicanica-001-site1.btempurl.com/Ratings/" + id,
+        {
+          rating: rate,
+          raterId: user.id,
+        }
+      );
 
       setRerender(true);
     } catch (e) {
@@ -61,7 +69,7 @@ const MovieDetails = () => {
 
   const watchListHandler = async () => {
     try {
-      await axios.post("https://localhost:7210/watchlist", {
+      await axios.post("http://cosovicanica-001-site1.btempurl.com/watchlist", {
         userId: user.id,
         movieId: id,
       });
@@ -84,7 +92,7 @@ const MovieDetails = () => {
             <div className="col-6">
               <img
                 className="img-fluid"
-                src={`https://localhost:7210/Images/${movie.cover}`}
+                src={`http://cosovicanica-001-site1.btempurl.com/Images/${movie.cover}`}
               />
             </div>
             <div className="col-6 p-5">
